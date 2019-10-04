@@ -79,8 +79,8 @@ exports.checkAndUpdate = checkAndUpdate;
 function copyCerts(domainFolder, keyPath, certPath) {
     fs_1.copyFileSync(path_1.join(domainFolder, KEY_NAME), keyPath);
     fs_1.copyFileSync(path_1.join(domainFolder, CERT_NAME), certPath);
-    fs_1.chmodSync(keyPath, 600);
-    fs_1.chmodSync(certPath, 600);
+    fs_1.chmodSync(keyPath, 256 | 128);
+    fs_1.chmodSync(certPath, 256 | 128);
     var _a = os_1.userInfo(), uid = _a.uid, gid = _a.gid;
     fs_1.chownSync(keyPath, uid, gid);
     fs_1.chownSync(keyPath, uid, gid);
