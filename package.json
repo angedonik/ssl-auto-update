@@ -16,9 +16,7 @@
     "typescript": "^3.1.6"
   },
   "dependencies": {},
-  "scripts": {
-    //"preinstall": "./install-cert-bot.sh"
-  },
+  "scripts": {},
   "bugs": {
     "url": "https://github.com/angedonik/ssl-auto-update/issues"
   },
