@@ -17,7 +17,7 @@
   },
   "dependencies": {},
   "scripts": {
-    "preinstall": "install-cert-bot.sh"
+    //"preinstall": "./install-cert-bot.sh"
   },
   "bugs": {
     "url": "https://github.com/angedonik/ssl-auto-update/issues"
