@@ -10,12 +10,19 @@ export async function checkAndUpdate(keyPath:string,certPath:string,domain:strin
     return new Promise((resolve,reject)=>{
         const domainFolder=getDomainFolder(domain);
         if(existsSync(join(domainFolder,CERT_NAME))){
-            if((Date.now()-statSync(join(domainFolder,CERT_NAME)).mtime.getTime())<checkDuration){
+            const certDate=statSync(join(domainFolder,CERT_NAME)).mtime;
+            if((Date.now() - certDate.getTime()) < checkDuration){
                 console.info('Up to date');
                 copyCerts(domainFolder,keyPath,certPath);
                 resolve();
                 return;
             }
+            else {
+                console.info('Certs are too old', certDate);
+            }
+        }
+        else {
+            console.info('Certs are not exist');
         }
         const p=spawn('certbot-auto',
             ['--standalone', 'certonly', '-d', domain, '--email', email, '--agree-tos', '-n'],
