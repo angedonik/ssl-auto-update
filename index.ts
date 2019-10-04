@@ -37,8 +37,8 @@ export async function checkAndUpdate(keyPath:string,certPath:string,domain:strin
 function copyCerts(domainFolder:string,keyPath:string,certPath:string) {
     copyFileSync(join(domainFolder,KEY_NAME),keyPath);
     copyFileSync(join(domainFolder,CERT_NAME),certPath);
-    chmodSync(keyPath, 600);
-    chmodSync(certPath, 600);
+    chmodSync(keyPath, 0o400|0o200);
+    chmodSync(certPath, 0o400|0o200);
     const {uid,gid}=userInfo();
     chownSync(keyPath,uid,gid);
     chownSync(keyPath,uid,gid);
