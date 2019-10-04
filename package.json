@@ -6,7 +6,8 @@
     "type": "git",
     "url": "git+https://github.com/angedonik/ssl-auto-update.git"
   },
-  "main": "lebenshilfeServer.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Codeda",
   "license": "MIT",
   "devDependencies": {
@@ -16,7 +17,9 @@
     "typescript": "^3.1.6"
   },
   "dependencies": {},
-  "scripts": {},
+  "scripts": {
+    "build": "tsc"
+  },
   "bugs": {
     "url": "https://github.com/angedonik/ssl-auto-update/issues"
   },
