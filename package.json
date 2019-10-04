@@ -1,0 +1,34 @@
+{
+  "name": "ssl-auto-update",
+  "version": "1.0.0",
+  "description": "Lebenshilfe",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angedonik/ssl-auto-update.git"
+  },
+  "main": "lebenshilfeServer.ts",
+  "author": "Codeda",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^10.12.9",
+    "ts-node": "^7.0.1",
+    "tslib": "^1.9.3",
+    "typescript": "^3.1.6"
+  },
+  "dependencies": {},
+  "scripts": {
+    "preinstall": "install-cert-bot.sh"
+  },
+  "bugs": {
+    "url": "https://github.com/angedonik/ssl-auto-update/issues"
+  },
+  "homepage": "https://github.com/angedonik/ssl-auto-update",
+  "keywords": [
+    "ssl",
+    "auto",
+    "update",
+    "cert",
+    "certificate",
+    "https"
+  ]
+}
