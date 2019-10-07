@@ -9,6 +9,7 @@ const CERT_DURATION=89*24*60*60*1000;
 export async function checkAndUpdate(keyPath:string,certPath:string,domain:string,email:string,checkDuration:number=CERT_DURATION) {
     return new Promise((resolve,reject)=>{
         const domainFolder=getDomainFolder(domain);
+        console.info('Domain Folder:',domainFolder);
         if(existsSync(join(domainFolder,CERT_NAME))){
             const certDate=statSync(join(domainFolder,CERT_NAME)).mtime;
             if((Date.now() - certDate.getTime()) < checkDuration){
@@ -22,7 +23,7 @@ export async function checkAndUpdate(keyPath:string,certPath:string,domain:strin
             }
         }
         else {
-            console.info('Certs are not exist');
+            console.info('Certs are not exist',join(domainFolder,CERT_NAME));
         }
         const p=spawn('certbot-auto',
             ['--standalone', 'certonly', '-d', domain, '--email', email, '--agree-tos', '-n'],
