@@ -50,12 +50,19 @@ function checkAndUpdate(keyPath, certPath, domain, email, checkDuration) {
             return [2 /*return*/, new Promise(function (resolve, reject) {
                     var domainFolder = getDomainFolder(domain);
                     if (fs_1.existsSync(path_1.join(domainFolder, CERT_NAME))) {
-                        if ((Date.now() - fs_1.statSync(path_1.join(domainFolder, CERT_NAME)).mtime.getTime()) < checkDuration) {
+                        var certDate = fs_1.statSync(path_1.join(domainFolder, CERT_NAME)).mtime;
+                        if ((Date.now() - certDate.getTime()) < checkDuration) {
                             console.info('Up to date');
                             copyCerts(domainFolder, keyPath, certPath);
                             resolve();
                             return;
                         }
+                        else {
+                            console.info('Certs are too old', certDate);
+                        }
+                    }
+                    else {
+                        console.info('Certs are not exist');
                     }
                     var p = child_process_1.spawn('certbot-auto', ['--standalone', 'certonly', '-d', domain, '--email', email, '--agree-tos', '-n'], { detached: false });
                     p.stderr.on('data', function (data) {
