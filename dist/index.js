@@ -49,6 +49,7 @@ function checkAndUpdate(keyPath, certPath, domain, email, checkDuration) {
         return __generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (resolve, reject) {
                     var domainFolder = getDomainFolder(domain);
+                    console.info('Domain Folder:', domainFolder);
                     if (fs_1.existsSync(path_1.join(domainFolder, CERT_NAME))) {
                         var certDate = fs_1.statSync(path_1.join(domainFolder, CERT_NAME)).mtime;
                         if ((Date.now() - certDate.getTime()) < checkDuration) {
@@ -62,7 +63,7 @@ function checkAndUpdate(keyPath, certPath, domain, email, checkDuration) {
                         }
                     }
                     else {
-                        console.info('Certs are not exist');
+                        console.info('Certs are not exist', path_1.join(domainFolder, CERT_NAME));
                     }
                     var p = child_process_1.spawn('certbot-auto', ['--standalone', 'certonly', '-d', domain, '--email', email, '--agree-tos', '-n'], { detached: false });
                     p.stderr.on('data', function (data) {
