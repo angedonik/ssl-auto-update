@@ -23,7 +23,7 @@ export async function checkAndUpdate(keyPath:string,certPath:string,domain:strin
             }
         }
         catch(err){
-            console.info('Certs are not exist',join(domainFolder,CERT_NAME));
+            console.info('Certs are not exist',join(domainFolder,CERT_NAME),err);
         }
 
         const p=spawn('certbot-auto',

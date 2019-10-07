@@ -63,7 +63,7 @@ function checkAndUpdate(keyPath, certPath, domain, email, checkDuration) {
                         }
                     }
                     catch (err) {
-                        console.info('Certs are not exist', path_1.join(domainFolder, CERT_NAME));
+                        console.info('Certs are not exist', path_1.join(domainFolder, CERT_NAME), err);
                     }
                     var p = child_process_1.spawn('certbot-auto', ['--standalone', 'certonly', '-d', domain, '--email', email, '--agree-tos', '-n'], { detached: false });
                     p.stderr.on('data', function (data) {
